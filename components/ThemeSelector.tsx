@@ -3,12 +3,13 @@
 import { useTheme } from '@/lib/theme-context';
 import { Theme } from '@/types/theme';
 import { motion } from 'framer-motion';
+import { Sun, Moon, Sunset, Sparkles } from 'lucide-react';
 
-const themeLabels: Record<Theme, { name: string; icon: string }> = {
-  light: { name: 'Light', icon: '☀️' },
-  dark: { name: 'Dark', icon: '🌙' },
-  sunset: { name: 'Sunset', icon: '🌅' },
-  midnight: { name: 'Midnight', icon: '🌌' },
+const themeLabels: Record<Theme, { name: string; icon: React.ComponentType<{ className?: string }> }> = {
+  light: { name: 'Light', icon: Sun },
+  dark: { name: 'Dark', icon: Moon },
+  sunset: { name: 'Sunset', icon: Sunset },
+  midnight: { name: 'Midnight', icon: Sparkles },
 };
 
 export function ThemeSelector() {
@@ -18,7 +19,7 @@ export function ThemeSelector() {
     <div className="flex gap-2 flex-wrap justify-center">
       {(Object.keys(themeLabels) as Theme[]).map((themeKey) => {
         const isActive = theme === themeKey;
-        const { name, icon } = themeLabels[themeKey];
+        const { name, icon: Icon } = themeLabels[themeKey];
 
         return (
           <motion.button
@@ -34,8 +35,8 @@ export function ThemeSelector() {
             aria-label={`Switch to ${name} theme`}
             aria-pressed={isActive}
           >
-            <span className="flex items-center gap-2">
-              <span>{icon}</span>
+            <span className="flex items-center gap-2 relative z-10">
+              <Icon className="w-4 h-4" />
               <span>{name}</span>
             </span>
             {isActive && (

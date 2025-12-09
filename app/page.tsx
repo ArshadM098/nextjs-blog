@@ -31,27 +31,15 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
       <main className="container mx-auto px-4 py-8 max-w-3xl">
-        {/* Header */}
-        <motion.header
+        {/* Theme Selector */}
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-12"
+          className="flex justify-end mb-8"
         >
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-3 tracking-tight"
-            style={{ color: 'var(--color-foreground)' }}
-          >
-            Shower Thoughts
-          </h1>
-          <p
-            className="text-lg md:text-xl mb-8"
-            style={{ color: 'var(--color-mutedForeground)' }}
-          >
-            Random musings from the shower 🚿
-          </p>
           <ThemeSelector />
-        </motion.header>
+        </motion.div>
 
         {/* Input Section */}
         <motion.div
